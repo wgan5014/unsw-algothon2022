@@ -17,10 +17,10 @@ for i in df:
         
         ccf = sm.tsa.stattools.ccf(pct_change_1, pct_change_2, adjusted=False, )
 
-        val = max(ccf)
-        index = np.argmax(ccf)
+        index = np.argmax(np.abs(ccf))
+        val = ccf[index]
 
         ls.append((val, index, i, j))
 
-ls.sort(key=lambda a: a[0])
-print(ls[-100:])
+ls.sort(key=lambda a: abs(a[0]))
+print(*ls, sep="\n")
