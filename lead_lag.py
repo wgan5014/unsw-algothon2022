@@ -11,10 +11,11 @@ for i in df:
     for j in df:
         if i == j:
             continue
+        
         pct_change_1 = df[i].pct_change()[1:]
         pct_change_2 = df[j].pct_change()[1:]
         
-        ccf = sm.tsa.stattools.ccf(pct_change_1[1:], pct_change_2[1:], adjusted=False, )
+        ccf = sm.tsa.stattools.ccf(pct_change_1, pct_change_2, adjusted=False, )
 
         val = max(ccf)
         index = np.argmax(ccf)
